@@ -3,308 +3,229 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Street Momos — Fresh & Juicy Momos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Street Momos App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0f172a; /* deep navy */
-      --accent:#ff6b35; /* momo-orange */
-      --muted:#94a3b8;
-      --card:#0b1220;
-      --glass: rgba(255,255,255,0.04);
+    :root {
+      --accent: #ffc107;
+      --button: #7a3a0e;
+      --bg: #0f172a;
+      --card: #1a2236;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
     }
-    *{box-sizing:border-box}
-    body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:0; background:linear-gradient(180deg,#071026 0%, #071428 60%); color:#e6eef8;}
-    .container{max-width:1100px;margin:0 auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-    .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ff9a66);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;font-size:20px;box-shadow:0 6px 18px rgba(255,107,53,0.12)}
-    .brand h1{margin:0;font-size:20px}
-    .tag{color:var(--muted);font-size:13px;margin-top:2px}
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:18px}
-    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:16px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    h2{margin:0 0 10px 0;font-size:34px}
-    p.lead{color:var(--muted);line-height:1.5}
-    .cta{display:flex;gap:12px;margin-top:18px}
-    .btn{background:var(--accent);border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;color:#071428}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-    .momo-image{border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(2,6,23,0.6)}
-    .momo-image img{display:block;width:100%;height:100%;object-fit:cover}
-    section.menu{margin-top:28px}
-    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    .momo-card{background:var(--card);padding:16px;border-radius:12px}
-    .momo-card h3{margin:0;font-size:18px}
-    .price{color:var(--accent);font-weight:700}
-    footer{margin-top:36px;padding:18px;border-radius:12px;background:var(--glass);display:flex;justify-content:space-between;align-items:center}
-    .contact{display:flex;gap:12px;align-items:center}
-    .social{display:flex;gap:10px}
-    .note{color:var(--muted);font-size:13px}
-    /* responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      .momo-image{height:240px}
-    }
-    /* small helper styles */
-    .badge{background:rgba(255,255,255,0.04);padding:6px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
-    .menu-item-desc{color:var(--muted);font-size:13px;margin-top:6px}
-    .order-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-    .order-cta{display:flex;gap:10px}
-    .small{font-size:13px;color:var(--muted)}
-    .search{display:flex;gap:8px;margin-top:14px}
-    .search input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    .search button{padding:10px 14px;border-radius:10px;border:none;background:var(--accent);font-weight:700;color:#071428}
-    .menu-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-    form.contact-form{display:flex;flex-direction:column;gap:10px}
-    input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); }
+    .app { max-width: 480px; margin: auto; height: 100vh; display: flex; flex-direction: column; background: var(--card); border-radius: 20px; overflow: hidden; position: relative; }
+    header { background: var(--accent); padding: 16px; text-align: center; font-weight: 700; font-size: 20px; color: #0f172a; }
+    main { flex: 1; overflow-y: auto; position: relative; padding-bottom: 80px; }
+    .hero { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1604908176836-0c7f6d5b2d12?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; filter: brightness(0.4); z-index: -1; }
+    .welcome { font-size: 22px; font-weight: 700; margin-bottom: 10px; color: var(--accent); animation: fadeIn 1.5s ease-in-out; }
+    .btn { background: var(--button); border: none; padding: 10px 16px; border-radius: 12px; font-weight: 700; color: #fff; cursor: pointer; transition: all 0.3s ease; }
+    .btn:hover { background: var(--accent); color: #0f172a; transform: scale(1.05); }
+    footer { background: rgba(255,255,255,0.03); padding: 10px; display: flex; justify-content: space-around; align-items: center; position: relative; z-index: 1; }
+    footer button { background: none; border: none; color: var(--muted); font-weight: 600; cursor: pointer; }
+    footer button.active { color: var(--accent); }
+    .menu-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; margin-bottom: 10px; transition: all 0.2s ease; }
+    .menu-item:hover { background: rgba(255,193,7,0.1); }
+    .qty-control { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+    .qty-btn { background: var(--button); border: none; color: #fff; border-radius: 50%; width: 28px; height: 28px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+    .qty-btn:hover { background: var(--accent); color: #0f172a; transform: scale(1.05); }
+    .delete-btn { background: none; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 4px 8px; cursor: pointer; font-size: 12px; transition: all 0.2s ease; }
+    .delete-btn:hover { background: var(--accent); color: #0f172a; transform: scale(1.05); }
+    .cart-bar { position: fixed; bottom: 60px; left: 0; right: 0; max-width: 480px; margin: auto; background: linear-gradient(90deg, #ffc107, #ffca28); color: #0f172a; font-weight: 700; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 16px 16px 0 0; box-shadow: 0 -4px 10px rgba(0,0,0,0.3); cursor: pointer; transition: all 0.3s ease; }
+    .cart-bar.hidden { display: none; }
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: flex-end; z-index: 10; }
+    .overlay.active { display: flex; animation: fadeIn 0.3s ease-in-out; }
+    .cart-panel { background: var(--card); width: 100%; max-width: 480px; border-radius: 20px 20px 0 0; padding: 20px; color: var(--text); transform: translateY(100%); animation: slideUp 0.4s ease-out forwards; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .cart-header h3 { color: var(--accent); }
+    .cart-item { display: flex; justify-content: space-between; margin: 8px 0; opacity: 1; transition: opacity 0.3s ease; }
+    .cart-total { text-align: right; font-weight: 700; color: var(--accent); margin-top: 10px; }
+    .qr-img { width: 180px; height: 180px; margin-top: 10px; border-radius: 12px; border: 2px solid var(--accent); display: block; margin-left: auto; margin-right: auto; cursor: pointer; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">SM</div>
-        <div>
-          <h1>Street Momos</h1>
-          <div class="tag">Fresh • Juicy • Street-style Momos</div>
+  <div class="app">
+    <header>Street Momos</header>
+    <main id="content"></main>
+    <div id="cartBar" class="cart-bar hidden" onclick="openCartPanel()"></div>
+    <div id="overlay" class="overlay" onclick="closeCartPanel(event)">
+      <div class="cart-panel" onclick="event.stopPropagation()">
+        <div class="cart-header">
+          <h3>Your Order</h3>
+          <button class="btn" style="padding:4px 8px;" onclick="closeCartPanel()">❌</button>
         </div>
-      </div>
-      <nav>
-        <a href="#menu">Menu</a>
-        <a href="#order">Order</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <div class="hero">
-      <div class="hero-card">
-        <span class="badge">Open today • 11:00 AM - 10:00 PM</span>
-        <h2>Street-style Momos — made to order</h2>
-        <p class="lead">Hand-folded momos with punchy chutneys and sautéed flavour. Veg, Chicken, Fried, and Chef's Special — made fresh and served hot.</p>
-
-        <div class="search">
-          <input id="searchInput" placeholder="Search menu (e.g., Chicken, Schezwan)" />
-          <button onclick="searchMenu()">Search</button>
-        </div>
-
-        <div class="cta">
-          <button class="btn" onclick="orderWhatsApp()">Order on WhatsApp</button>
-          <button class="btn ghost" onclick="scrollToMenu()">See Menu</button>
-        </div>
-
-        <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
-          <div class="small"><strong>Pickup</strong> • Ready in 10-12 mins</div>
-          <div class="small">|</div>
-          <div class="small"><strong>Delivery</strong> • Partner apps</div>
-        </div>
-      </div>
-
-      <div class="momo-image">
-        <img src="https://images.unsplash.com/photo-1604908176836-0c7f6d5b2d12?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6a09b3f2bc3d5f3a4a6f5e0a2c5a7f8b" alt="Street Momos" />
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal"></div>
+        <p style="text-align:center;margin-top:10px;">💳 Tap QR to pay via UPI</p>
+        <a href="upi://pay?pa=8147535707@okbizaxis&pn=StreetMomos&cu=INR" target="_blank">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=8147535707@okbizaxis&pn=StreetMomos&cu=INR" alt="UPI QR Code" class="qr-img">
+        </a>
+        <button class="btn" style="width:100%;margin-top:12px;" onclick="sendCartWhatsApp()">Send Order via WhatsApp</button>
       </div>
     </div>
-
-    <section id="menu" class="menu">
-      <div class="menu-header">
-        <div>
-          <h2 style="font-size:22px">Our Menu</h2>
-          <div class="note">Made fresh daily. Customize spice level when you order.</div>
-        </div>
-        <div class="badge">Special: Schezwan Momos</div>
-      </div>
-
-      <div class="menu-grid" id="menuGrid">
-        <!-- Menu items (JS will also be able to filter/search) -->
-        <div class="momo-card" data-name="veg momo">
-          <h3>Veg Momo <span class="price">₹80</span></h3>
-          <div class="menu-item-desc">Steamed veg dumplings served with sesame chutney.</div>
-          <div class="order-row">
-            <div class="small">6 pcs</div>
-            <div class="order-cta">
-              <button class="btn" onclick="quickOrder('Veg Momo - ₹80')">Order</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="momo-card" data-name="chicken momo">
-          <h3>Chicken Momo <span class="price">₹120</span></h3>
-          <div class="menu-item-desc">Juicy minced chicken with secret spice mix.</div>
-          <div class="order-row">
-            <div class="small">6 pcs</div>
-            <div class="order-cta">
-              <button class="btn" onclick="quickOrder('Chicken Momo - ₹120')">Order</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="momo-card" data-name="fried momo">
-          <h3>Fried Momo <span class="price">₹130</span></h3>
-          <div class="menu-item-desc">Crispy pan-fried momos with tangy dip.</div>
-          <div class="order-row">
-            <div class="small">6 pcs</div>
-            <div class="order-cta">
-              <button class="btn" onclick="quickOrder('Fried Momo - ₹130')">Order</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="momo-card" data-name="schezwan momo">
-          <h3>Schezwan Momo <span class="price">₹140</span></h3>
-          <div class="menu-item-desc">Spicy toss with Schezwan sauce — crowd favourite.</div>
-          <div class="order-row">
-            <div class="small">6 pcs</div>
-            <div class="order-cta">
-              <button class="btn" onclick="quickOrder('Schezwan Momo - ₹140')">Order</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="momo-card" data-name="paneer momo">
-          <h3>Paneer Momo <span class="price">₹130</span></h3>
-          <div class="menu-item-desc">Soft paneer filling with aromatic herbs.</div>
-          <div class="order-row">
-            <div class="small">6 pcs</div>
-            <div class="order-cta">
-              <button class="btn" onclick="quickOrder('Paneer Momo - ₹130')">Order</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="momo-card" data-name="chilly chicken momo">
-          <h3>Chilly Chicken Momo <span class="price">₹150</span></h3>
-          <div class="menu-item-desc">Tangy & spicy chilly chicken tossed with momos.</div>
-          <div class="order-row">
-            <div class="small">6 pcs</div>
-            <div class="order-cta">
-              <button class="btn" onclick="quickOrder('Chilly Chicken Momo - ₹150')">Order</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="order" style="margin-top:22px;display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start">
-      <div class="hero-card">
-        <h2 style="font-size:20px">Order / Enquiry</h2>
-        <p class="note">Choose your item and send us a message. We'll confirm pickup/delivery time.</p>
-
-        <div style="margin-top:12px">
-          <label class="small">Your name</label>
-          <input id="custName" placeholder="e.g., Ravi" />
-          <label class="small" style="margin-top:8px">Order details</label>
-          <textarea id="custOrder" rows="3" placeholder="Which momos, quantity, spice level"></textarea>
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <button class="btn" onclick="sendOrderForm()">Send via WhatsApp</button>
-            <button class="btn ghost" onclick="orderWhatsApp()">Quick WhatsApp</button>
-          </div>
-          <div class="note" style="margin-top:8px">Or call: <strong>+91 98765 43210</strong></div>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <h3 style="margin-top:0">Opening Hours</h3>
-        <div class="small">Mon - Sun: 11:00 AM - 10:00 PM</div>
-        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)" />
-        <h3 style="margin:0">Location</h3>
-        <div class="small">Street-side stall • Your Local Market • Bangalore</div>
-        <div style="margin-top:8px">
-          <a class="badge" href="https://www.google.com/maps" target="_blank">Open in Maps</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" style="margin-top:26px">
-      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
-        <div class="hero-card">
-          <h2 style="font-size:20px">Contact & Feedback</h2>
-          <form class="contact-form" onsubmit="event.preventDefault(); sendFeedback()">
-            <input id="fbName" placeholder="Your name" required />
-            <input id="fbPhone" placeholder="Phone (optional)" />
-            <textarea id="fbMsg" rows="4" placeholder="Message or feedback" required></textarea>
-            <div style="display:flex;gap:8px">
-              <button class="btn" type="submit">Send Feedback</button>
-              <a class="btn ghost" href="mailto:streetmomos@example.com">Email Us</a>
-            </div>
-          </form>
-        </div>
-
-        <div class="hero-card">
-          <h3 style="margin-top:0">Follow</h3>
-          <div class="social" style="margin-top:8px">
-            <a class="badge" href="#">Instagram</a>
-            <a class="badge" href="#">Facebook</a>
-            <a class="badge" href="#">X</a>
-          </div>
-
-          <div style="margin-top:18px">
-            <h4 style="margin:0">Notes</h4>
-            <div class="note" style="margin-top:6px">We accept cash, UPI and partner-app payments. Group orders? Call ahead.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <footer>
-      <div>
-        <strong>Street Momos</strong>
-        <div class="note">Handmade momos • Street-style goodness</div>
-      </div>
-      <div class="contact">
-        <div class="note">Call: +91 98765 43210</div>
-        <div style="width:10px"></div>
-        <div class="note">WhatsApp orders available</div>
-      </div>
+      <button id="homeBtn" class="active" onclick="openHome()">Home</button>
+      <button id="menuBtn" onclick="openMenu()">Menu</button>
+      <button id="supportBtn" onclick="openSupport()">Support</button>
     </footer>
   </div>
 
   <script>
-    const phoneNumber = '+918147535707'; // change to your number
+    const content = document.getElementById('content');
+    const cartBar = document.getElementById('cartBar');
+    const overlay = document.getElementById('overlay');
+    const cartItemsDiv = document.getElementById('cartItems');
+    const cartTotalDiv = document.getElementById('cartTotal');
+    const phone = '+918147535707';
+    const upiID = '8147535707@okbizaxis';
+    const qrURL = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=8147535707@okbizaxis&pn=StreetMomos&cu=INR';
 
-    function orderWhatsApp(){
-      const text = encodeURIComponent('Hi Street Momos, I would like to place an order.');
-      const url = `https://wa.me/${phoneNumber.replace(/\D/g,'')}?text=${text}`;
-      window.open(url,'_blank');
+    const menu = [
+      {name:'Veg Momo', price:80},
+      {name:'Chicken Momo', price:120},
+      {name:'Fried Momo', price:130},
+      {name:'Schezwan Momo', price:140},
+      {name:'Paneer Momo', price:130}
+    ];
+
+    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+    menu.forEach(item => {
+      const id = item.name.replace(/\s+/g,'');
+      cart[id] = cart[id] || {...item, qty:0};
+    });
+
+    function saveCart(){ localStorage.setItem('cart', JSON.stringify(cart)); }
+
+    function openHome(){
+      setActive('homeBtn');
+      content.innerHTML = `<div class='hero'>
+        <div class='welcome'>Welcome to Street Momos ✨<br>Have a Classy Bite!</div>
+        <h2>Delicious Street-Style Momos</h2>
+        <p>Freshly steamed, fried, and tossed momos made to order.</p>
+        <button class='btn' onclick='openMenu()'>Order Now</button>
+      </div>`;
     }
 
-    function quickOrder(item){
-      const text = encodeURIComponent('Hi, I want to order: ' + item);
-      const url = `https://wa.me/${phoneNumber.replace(/\D/g,'')}?text=${text}`;
-      window.open(url,'_blank');
-    }
-
-    function sendOrderForm(){
-      const name = document.getElementById('custName').value || 'Customer';
-      const order = document.getElementById('custOrder').value || '';
-      if(!order.trim()){alert('Please enter order details.');return}
-      const text = encodeURIComponent(`Hi, my name is ${name}. I would like to order: ${order}`);
-      const url = `https://wa.me/${phoneNumber.replace(/\D/g,'')}?text=${text}`;
-      window.open(url,'_blank');
-    }
-
-    function sendFeedback(){
-      const name = document.getElementById('fbName').value;
-      const phone = document.getElementById('fbPhone').value || 'Not provided';
-      const msg = document.getElementById('fbMsg').value;
-      if(!name || !msg){alert('Please fill name and message.');return}
-      const text = encodeURIComponent(`Feedback from ${name} (${phone}): ${msg}`);
-      const url = `https://wa.me/${phoneNumber.replace(/\D/g,'')}?text=${text}`;
-      window.open(url,'_blank');
-    }
-
-    function scrollToMenu(){
-      document.getElementById('menu').scrollIntoView({behavior:'smooth'});
-    }
-
-    function searchMenu(){
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('#menuGrid .momo-card');
-      if(!q){cards.forEach(c=>c.style.display='block'); return}
-      cards.forEach(c=>{
-        const name = c.getAttribute('data-name') || '';
-        if(name.indexOf(q) !== -1) c.style.display='block'; else c.style.display='none';
+    function openMenu(){
+      setActive('menuBtn');
+      let html = `<div style='padding:16px;'>
+        <h3 style='color:var(--accent);margin-bottom:10px;'>Menu</h3>`;
+      menu.forEach(item=>{
+        const id = item.name.replace(/\s+/g,'');
+        html += `<div class='menu-item' id='item-${id}'>
+          <h4>${item.name}</h4>
+          <div style='color:var(--accent);font-weight:700;'>₹${item.price}</div>
+          <div id='controls-${id}'>
+            <button class='btn' onclick='addItem("${id}")'>Add</button>
+          </div>
+        </div>`;
       });
+      html += `</div>`;
+      content.innerHTML = html;
     }
+
+    function addItem(id){
+      cart[id].qty = 1;
+      updateControls(id);
+      updateCartBar();
+      saveCart();
+    }
+
+    function updateControls(id){
+      const item = cart[id];
+      const controls = document.getElementById(`controls-${id}`);
+      if(item.qty > 0){
+        controls.innerHTML = `<div class='qty-control'>
+          <button class='qty-btn' onclick='changeQty("${id}",-1)'>-</button>
+          <span>${item.qty}</span>
+          <button class='qty-btn' onclick='changeQty("${id}",1)'>+</button>
+          <button class='delete-btn' onclick='removeItem("${id}")'>Delete</button>
+        </div>`;
+      } else {
+        controls.innerHTML = `<button class='btn' onclick='addItem("${id}")'>Add</button>`;
+      }
+    }
+
+    function changeQty(id,delta){
+      cart[id].qty = Math.max(0, cart[id].qty + delta);
+      updateControls(id);
+      updateCartBar();
+      saveCart();
+    }
+
+    function removeItem(id){
+      cart[id].qty = 0;
+      updateControls(id);
+      updateCartBar();
+      saveCart();
+    }
+
+    function updateCartBar(){
+      const items = Object.values(cart).filter(i => i.qty > 0);
+      if(items.length === 0){ cartBar.classList.add('hidden'); return; }
+      const total = items.reduce((sum,i)=>sum+i.price*i.qty,0);
+      const count = items.reduce((sum,i)=>sum+i.qty,0);
+      cartBar.textContent = `🛒 ${count} item${count>1?'s':''} • ₹${total} → View Cart`;
+      cartBar.classList.remove('hidden');
+    }
+
+    function openCartPanel(){
+      const items = Object.values(cart).filter(i=>i.qty>0);
+      let html='', total=0;
+      items.forEach(i=>{
+        const itemTotal = i.price*i.qty;
+        total += itemTotal;
+        html += `<div class='cart-item'><span>${i.name} x ${i.qty}</span><span>₹${itemTotal}</span></div>`;
+      });
+      cartItemsDiv.innerHTML = html;
+      cartTotalDiv.textContent = `Grand Total: ₹${total}`;
+      overlay.classList.add('active');
+    }
+
+    function closeCartPanel(){ overlay.classList.remove('active'); }
+
+    function sendCartWhatsApp(){
+      const items = Object.values(cart).filter(i => i.qty>0);
+      if(items.length===0){closeCartPanel(); return;}
+      let msg = 'Hi! I would like to order:\n';
+      let total = 0;
+      items.forEach(i=>{
+        const itemTotal = i.price*i.qty;
+        total += itemTotal;
+        msg += `${i.name} x ${i.qty} = ₹${itemTotal}\n`;
+      });
+      msg += `Grand Total: ₹${total}\n\nPayment: Please pay via UPI (${upiID}) before delivery and send screenshot via WhatsApp.`;
+      window.open(`https://wa.me/${phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function setActive(id){
+      document.querySelectorAll('footer button').forEach(b=>b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function openSupport(){
+      setActive('supportBtn');
+      content.innerHTML=`<div style="padding:16px;">
+        <h3 style="color:var(--accent);margin-bottom:10px;">Support & Delivery Info</h3>
+        <p>🕒 Delivery Time: 30-45 mins from order confirmation.</p>
+        <p>📦 Freshly prepared momos on order. Keep your phone handy for WhatsApp confirmation.</p>
+        <p>💳 Payment: Pay via UPI to <strong>${upiID}</strong> before delivery.</p>
+        <p>Scan QR code below to pay quickly:</p>
+        <a href="upi://pay?pa=${upiID}&pn=StreetMomos&cu=INR" target="_blank">
+          <img src="${qrURL}" alt="UPI QR Code" class="qr-img">
+        </a>
+        <p>After payment, send the screenshot or transaction ID via WhatsApp to <strong>${phone}</strong>.</p>
+        <p>📞 Contact: ${phone}</p>
+      </div>`;
+    }
+
+    openHome();
+    updateCartBar();
   </script>
 </body>
 </html>
