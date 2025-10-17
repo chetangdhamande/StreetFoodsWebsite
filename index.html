@@ -71,6 +71,7 @@ footer button:hover { background: rgba(255,193,7,0.1); }
 <body>
 <div class="app">
   <header>
+  
     <span>Street Momos</span>
   </header>
   <main id="content"></main>
@@ -87,7 +88,9 @@ footer button:hover { background: rgba(255,193,7,0.1); }
       <div class="cart-total" id="cartTotal"></div>
 
       <label for="custAddress" style="margin-top:8px;display:block;">📍 Delivery Address:</label>
-      <textarea id="custAddress" placeholder="Enter your address here" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--accent);margin-bottom:8px;color:#0f172a;"></textarea>
+      <textarea id="custAddress" placeholder="Enter your address here"
+        style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--accent);margin-bottom:8px;color:#0f172a;"
+        oninput="saveAddress()"></textarea>
 
       <p style="text-align:center;margin-top:10px;">💳 Tap QR to pay via UPI</p>
       <a id="qrLink" target="_blank">
@@ -189,12 +192,29 @@ function updateCartBar(){
   cartBar.classList.remove('hidden');
 }
 
+function saveAddress(){
+  const addr = document.getElementById('custAddress').value;
+  localStorage.setItem('deliveryAddress', addr);
+}
+
+function loadAddress(){
+  const saved = localStorage.getItem('deliveryAddress');
+  if(saved){
+    document.getElementById('custAddress').value = saved;
+  }
+}
+
 function openCartPanel(){
   const items=Object.values(cart).filter(i=>i.qty>0);
   let html='',total=0;
-  items.forEach(i=>{ const itemTotal=i.price*i.qty; total+=itemTotal; html+=`<div class='cart-item'><span>${i.name} x ${i.qty}</span><span>₹${itemTotal}</span></div>`; });
+  items.forEach(i=>{
+    const itemTotal=i.price*i.qty;
+    total+=itemTotal;
+    html+=`<div class='cart-item'><span>${i.name} x ${i.qty}</span><span>₹${itemTotal}</span></div>`;
+  });
   cartItemsDiv.innerHTML=html;
   cartTotalDiv.textContent=`Grand Total: ₹${total}`;
+  loadAddress();
   overlay.classList.add('active');
 }
 
